@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 #include "pico/stdlib.h"
+#include <math.h>
 
 #define PICO_DEFAULT_LED_PIN 25
 
@@ -16,25 +16,19 @@ int main()
         char cur_sym = getchar(); 
         char command[50] = "";
         int counter = 0;
+        int time = 0;
         while (cur_sym != '`')
         {
             command[counter] = cur_sym;
             cur_sym = getchar();
+            time += (int)cur_sym * pow(10, counter);
             counter++;
         }
-        printf(command);
-        printf("\n");
-        int time = (int)command;
         
-        /*
-        time += 5;
-        time *= 10;
-        printf(time);
-        printf("\n");
-        
+        //time *= 100;
         gpio_put(PICO_DEFAULT_LED_PIN, true);
         sleep_ms(time);
         gpio_put(PICO_DEFAULT_LED_PIN, false);
-        */
+        
     }
 }
